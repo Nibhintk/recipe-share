@@ -1,0 +1,44 @@
+<% layout("/layout/boilerplate.ejs")%>
+<% if (locals.success && success.length > 0) { %>
+  <div class="alert alert-success">
+    <%= success %>
+  </div>
+<% } %>
+
+<% if (locals.error && error.length > 0) { %>
+  <div class="alert alert-danger">
+    <%= error %>
+  </div>
+<% } %>
+
+<% if (query) { %>
+  <h3>Showing results for "<%= query %>"</h3>
+<% } else { %>
+  
+<% } %>
+
+<% if (recipes.length === 0) { %>
+  <p>No recipes found.</p>
+<% } %>
+
+
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-3 mt-3">
+    
+    <%for(recipe of recipes){%>
+        <a href="/home/<%=recipe._id%>" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card col recipe-card" style="width: 100%; cursor: pointer;">
+            
+            <img src="<%=recipe.image%>" class="card-img-top" alt="recipe" style="height: 20rem;">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <h5><b><%=recipe.title%></b></h5>
+                <p style="margin-bottom: 0.1rem;"><i class="fa-solid fa-clock"></i>&nbsp;<%=recipe.cookingTime%>mins</p>
+                <p style="margin-bottom: 0.1rem;"><%=recipe.category%></p>
+            </div>
+            
+        </div>
+        </a>
+    <%}%>
+    
+</div>
+    

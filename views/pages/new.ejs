@@ -1,0 +1,97 @@
+<% layout("/layout/boilerplate.ejs")%>
+<div class="row">
+    <div class="col-6 offset-3">
+    <h2><b>🍽 Share Your Secret Recipe!</b></h2>
+    <form method="POST" action="/home" class="needs-validation" novalidate>
+        <div>
+            <label for="title" class="form-label">Title</label>
+            <input name="recipe[title]"  class="form-control" placeholder="Enter the dish name" required>
+        </div>
+
+        <div>
+            <label for="description" class="form-label">description</label>
+            <textarea name="recipe[description]" class="form-control" placeholder="Enter the description" required></textarea> 
+        </div>
+
+        <div>
+            <label for="category" class="form-label">Category</label>
+            <select name="recipe[category]" class="form-control" id="category" required>
+                <option value="vegetarian">vegetarian</option>
+                <option value="non-vegetarian">non-vegetarian</option>
+            </select>
+        </div>
+        <div>
+            <label for="cookingTime" class="form-label">Cooking time(minutes)</label>
+            <input name="recipe[cookingTime]"  class="form-control" placeholder="Enter required time" required>
+        </div>
+        <div>
+            <label for="servings" class="form-label">Servings</label>
+            <input name="recipe[servings]" class="form-control" placeholder="Number of servings" required>
+        </div>
+        <div>
+            <label for="image" class="form-label">Image</label>
+            <input name="recipe[image]" class="form-control" placeholder="Enter the image url" required>
+        </div>
+        <h4>Incredients</h4>
+        <div>
+            <div id="incredients">
+                <div class="incredient d-flex mb-2">
+                    
+                    <input name="recipe[ingredients][0][name]" class="form-control me-2" placeholder="Name" required>
+                    <input name="recipe[ingredients][0][quantity]" class="form-control" placeholder="Quantity" required>
+
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <button class="btn" type="button" id="add-ingredient">Add Ingredient</button>
+        </div>
+        <h4>Instruction</h4>
+        <div>
+            <div id="instructions">
+                <input name="recipe[instructions][0]"class="form-control mb-2" placeholder="Step 1" required>
+            </div>
+        </div>
+        <div>
+            <button class="btn" type="button" id="add-instruction">Add Instruction</button>
+        </div>
+
+        <br><br>
+        <button class="btn save-btn" type="submit">Save</button>
+    </form>
+
+    </div>
+</div>
+
+<script>
+        let addIncredientBtn=document.getElementById("add-ingredient")
+        addIncredientBtn.addEventListener("click",()=>{
+            const incredients=document.getElementById("incredients")
+            const count=document.querySelectorAll(".incredient").length;
+
+            const div=document.createElement("div")
+            div.classList.add("incredient", "d-flex", "mb-2");
+            div.innerHTML=`
+                <input name="recipe[ingredients][${count}][name]" class="form-control me-2" placeholder="Name" required>
+                <input name="recipe[ingredients][${count}][quantity]" class="form-control" placeholder="Quantity" required>
+            `
+            incredients.appendChild(div);
+             
+        })
+
+        let addInstructionBtn=document.getElementById("add-instruction")
+        addInstructionBtn.addEventListener("click",()=>{
+            const instruction=document.getElementById("instructions")
+            const count = instructions.querySelectorAll('input').length;
+
+            const input = document.createElement('input');
+            input.name = `recipe[instructions][${count}]`;
+            input.placeholder = `Step ${count + 1}`;
+            input.classList.add('form-control', 'mb-2');
+            instructions.appendChild(input);
+        })
+
+
+
+</script>

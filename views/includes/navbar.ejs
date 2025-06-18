@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/home"><i class="fa-solid fa-burger"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="home">
+        
+        <a class="nav-link" href="/home">Home</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <div>
+        
+        <a class="nav-link" href="/home/new">Share your Recipe</a>
+        
+      </div>
+      <div class="navbar-nav ms-auto">
+          <form class="d-flex" method="get" action="/home">
+            <input class="form-control me-2 search-input" name="q" type="search" placeholder="Search recipes" aria-label="Search">
+            <button class="btn  btn-search" type="submit">Search</button>
+          </form>
+        </div>
+      <div class="navbar-nav ms-auto">
+      <% if(!currUser){%>
+        <a class="nav-link text-white" href="/signup">SignUp</a>
+      
+      
+        <a class="nav-link text-white login-btn" href="/login">Login</a>
+      <%}%>
+      <% if(currUser){%> 
+      
+        <a class="nav-link text-white login-btn" href="/logout">Logout</a>
+      <%}%>
+      </div>
+    </div>
+  
+  </div>
+</nav>

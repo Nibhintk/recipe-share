@@ -1,0 +1,97 @@
+<% layout("/layout/boilerplate.ejs")%>
+<div class="row mt-4">
+    <div class="col-6 offset-3">
+        <div class="recipe-card">
+            <img src="<%=recipe.image%>" class="recipe-img" alt="https://images.unsplash.com/photo-1528712306091-ed0763094c98?q=80&w=740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <div class="recipe-details">
+                
+                <h3><b><%=recipe.title%></b></h3>
+                <p class="card-text">
+                <i>published by:&nbsp;<%=recipe.owner.username%></i><br><br>
+                <%=recipe.description%><br>
+                <i class="fa-solid fa-clock"></i>&nbsp;Time Taken:&nbsp;<%=recipe.cookingTime%>&nbsp;min<br>
+                Number of servings:&nbsp;<%=recipe.servings%><br>
+                <%=recipe.category%><br>
+                </p>
+                <h4>Incredients</h4>
+                <ul>
+                    <% for(ingredient of recipe.ingredients){%>
+                        <li><%=ingredient.name%>&nbsp;&nbsp;<%=ingredient.quantity%></li>
+                    <%}%>
+                </ul>
+
+                <h4>Instructions</h4>
+                <ul>
+                    <% for(inst of recipe.instructions){%>
+                        <li><%=inst%></li>
+                    <%}%>
+                </ul>
+
+            </div>
+            <% if(currUser && currUser._id.equals(recipe.owner._id)){ %>
+            <div class=" d-flex mb-2 gap-4" >
+            <form method="post" action="/home/<%=recipe._id%>?_method=DELETE" >
+                <button class="btn">Delete</button>
+            </form>
+            <form method="get" action="/home/<%=recipe._id%>/edit" >
+                <button class="btn edit-btn">Edit</button>
+            </form>
+            </div>
+            <%}%>
+            <hr>
+        </div>
+        <%if(currUser){%>
+        <div >
+            <h3>Leave a review</h3>
+            <form action="/home/<%=recipe._id%>/reviews" method="post" class="needs-validation"novalidate>
+                
+                <fieldset class="starability-heart">
+                
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+                <label class="form-label ">Hows the recipe?</label>
+                <textarea class="form-control mb-2" name="review[comment]" id="comment"></textarea>
+                <button class="btn">Submit </button>
+            </form>
+        </div>
+        <hr>
+        <%}%>
+        
+
+        <div>
+            <h3>All Reviews</h3>
+            <div class="row g-3">
+            <% for(review of recipe.reviews){%>
+                <div class=" review-card col-5 mb-3 ms-3 ">
+                    <div class="review-card-text">
+                    <p><%=review.author.username%></p>
+                     <p class="starability-result" data-rating="<%=review.rating%>">
+                    
+                    </p>
+                    <p><%=review.comment%></p>
+                    <p><%=review.createdAt.toDateString()%></p>
+                    </div>
+                    <% if(currUser && currUser._id.equals(review.author._id)){ %>
+                    <form method="post" action="/home/<%=recipe._id%>/reviews/<%=review._id%>?_method=Delete">
+                        <button class="btn btn-sm mb-2">Delete</button>
+                    </form>
+                    <%}%>
+                </div>
+
+            <%}%>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

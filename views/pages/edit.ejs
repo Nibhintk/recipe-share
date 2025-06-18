@@ -1,0 +1,100 @@
+<% layout("/layout/boilerplate.ejs")%>
+<div class="row mt-3">
+    <div class="col-6 offset-3">
+    
+    <form method="post" action="/home/<%=recipe._id%>?_method=put" class="needs-validation"novalidate>
+        <div>
+            <label for="title" class="form-label">Title</label>
+            <input name="recipe[title]"  class="form-control" value="<%=recipe.title%>" required>
+        </div>
+
+        <div>
+            <label for="description" class="form-label">description</label>
+            <textarea name="recipe[description]" class="form-control" required ><%=recipe.description%></textarea> 
+        </div>
+
+        <div>
+            <label for="category" class="form-label">Category</label>
+            <select name="recipe[category]" class="form-control" id="category" required>
+                <option value="vegetarian" <%= recipe.category === "vegetarian" ? "selected" : "" %>>vegetarian</option>
+                <option value="non-vegetarian" <%= recipe.category === "non-vegetarian" ? "selected" : "" %>>non-vegetarian</option>
+            </select>
+        </div>
+        <div>
+            <label for="cookingTime" class="form-label">Cooking time(minutes)</label>
+            <input name="recipe[cookingTime]"  class="form-control" value="<%=recipe.cookingTime%>" required>
+        </div>
+        <div>
+            <label for="servings" class="form-label">Servings</label>
+            <input name="recipe[servings]" class="form-control" value="<%=recipe.servings%>" required>
+        </div>
+        <div>
+            <label for="image" class="form-label">Image</label>
+            <input name="recipe[image]" class="form-control" value="<%=recipe.image%>" required >
+        </div>
+        <h4>Incredients</h4>
+        <div>
+            <div id="incredients">
+                <% recipe.ingredients.forEach((ing, index) => { %>
+                    <div class="incredient d-flex mb-2">
+                        <input name="recipe[ingredients][<%= index %>][name]" class="form-control me-2" value="<%= ing.name %>" placeholder="Name" required>
+                        <input name="recipe[ingredients][<%= index %>][quantity]" class="form-control" value="<%= ing.quantity %>" placeholder="Quantity" required>
+                    </div>
+                <% }) %>
+            </div>
+
+        </div>
+        <div>
+            <button class="btn" type="button" id="add-ingredient">Add Ingredient</button>
+        </div>
+        <h4>Instruction</h4>
+        <div>
+            <div id="instructions">
+            <% recipe.instructions.forEach((step, index) => { %>
+                <input name="recipe[instructions][<%= index %>]" class="form-control mb-2" value="<%= step %>" placeholder="Step <%= index + 1 %>" required>
+            <% }) %>
+            </div>
+
+        </div>
+        <div>
+            <button class="btn" type="button" id="add-instruction">Add Instruction</button>
+        </div>
+
+        <br><br>
+        <button class="btn save-btn" type="submit">Save</button>
+    </form>
+
+    </div>
+</div>
+
+<script>
+        let addIncredientBtn=document.getElementById("add-ingredient")
+        addIncredientBtn.addEventListener("click",()=>{
+            const incredients=document.getElementById("incredients")
+            const count=document.querySelectorAll(".incredient").length;
+
+            const div=document.createElement("div")
+            div.classList.add("incredient", "d-flex", "mb-2");
+            div.innerHTML=`
+                <input name="recipe[ingredients][${count}][name]" class="form-control me-2" placeholder="Name" required>
+                <input name="recipe[ingredients][${count}][quantity]" class="form-control" placeholder="Quantity" required>
+            `
+            incredients.appendChild(div);
+             
+        })
+
+        let addInstructionBtn=document.getElementById("add-instruction")
+        addInstructionBtn.addEventListener("click",()=>{
+            const instruction=document.getElementById("instructions")
+            const count = instructions.querySelectorAll('input').length;
+
+            const input = document.createElement('input');
+            input.name = `recipe[instructions][${count}]`;
+            input.placeholder = `Step ${count + 1}`;
+            input.classList.add('form-control', 'mb-2');
+            instructions.appendChild(input);
+        })
+
+
+
+</script>

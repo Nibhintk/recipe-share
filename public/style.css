@@ -1,0 +1,148 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+.navbar{
+    height: 5rem;
+}
+.recipe-card{
+    border: none !important ;
+    margin-bottom: 2rem;
+   
+    
+}
+.card-img-top{
+    border-radius: 2rem !important;
+    width: 100%;
+    object-fit: cover;
+}
+.fa-burger {
+    font-size: 40px;
+    color: #c70909;
+}
+.fa-burger:hover{
+    color: #3D405B;
+}
+body {
+    background: #F4F1DE;  
+    color: #3D405B;     
+}
+.navbar, .header {
+    background-color:#F6D6A9 !important ;
+}
+
+button, .cta {
+    background: #81B29A;  
+    color: #F4F1DE;
+}
+
+.card {
+    background: #F6D6A9; 
+    border: none;
+    color: #3D405B;
+    border-radius: 2rem !important;
+}
+.nav-link{
+    background-color:  #3D405B;
+    border: 1px solid black;
+    text-decoration: none;
+    border-radius: 2rem;
+    color: rgb(253, 253, 253);
+}
+.nav-link:hover{
+    background-color: #c70909;
+    color: white;
+}
+
+.card-img-overlay{
+    background-color: white;
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+}
+.footer{
+    background-color: #f4c583 ;
+    height: 8rem !important;
+}
+
+.f-info-socials{
+    margin-top: .2rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.f-info-links{
+    margin-top: 1rem;
+    text-align: center;
+    color: #3D405B;
+    font-size: 1rem;
+}
+.f-info-links a{
+    
+    color: #3D405B;
+}
+.slogan{
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: .7rem;
+}
+
+.recipe-img{
+    border-radius: 1rem !important;
+    width: 100%;
+    object-fit:cover !important;
+    height: 40vh;
+}
+.form-control{
+    border-radius: .7rem !important;
+}
+.btn{
+    background-color: #53af82 !important;
+    color: #F4F1DE !important;
+}
+.save-btn{
+    margin-bottom: 1rem;
+}
+.edit-btn{
+    width: 80px !important;
+}
+.review-card{
+    border: .5px solid #3D405B;
+    border-radius: 1rem !important;
+ 
+}
+.review-card-text{
+    padding-left: 10px;
+    padding-top: 15px;
+    border-radius: 1rem !important;
+}
+.login-btn{
+    width: 4rem;
+    margin-right: 1rem !important;
+    margin-left: 5px;
+}
+.black-text{
+    color: black;
+}
+.home{
+    margin-right: 1rem !important;
+}
+.navbar-nav .nav-item {
+  width: 80px; /* Set a fixed width */
+  margin: 0 auto; /* Center the item */
+}
+
+.navbar-nav .nav-link {
+  text-align: center;
+}
+.navbar-collapse {
+   /* or any color that fits your theme */
+  z-index: 1050; /* ensures it’s above other content like images */
+  position: relative; /* ensures z-index applies */
+  padding: 1rem;
+}
